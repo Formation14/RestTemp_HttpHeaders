@@ -2,23 +2,27 @@ package LastTask.task.controller;
 
 import LastTask.task.model.User;
 import LastTask.task.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-@RestController
-@RequestMapping("/api/users")
-public class UserRestController {
 //    Получение всех пользователей - …/api/users ( GET )
 //    Добавление пользователя - …/api/users ( POST )
 //    Изменение пользователя - …/api/users ( PUT )
 //    Удаление пользователя - …/api/users /{id} ( DELETE )
 
-    @Autowired
+@RestController
+@RequestMapping("/api/users")
+public class UserRestController {
+
+    final
     UserRepository userRepository;
+
+    public UserRestController(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @GetMapping
     public List<User> getAllUsers(){
